@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anime Life RPG</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <aside class="sidebar">
+    <div class="logo">
+      <span class="logo-icon">✦</span>
+      <div><strong>ANIME LIFE</strong><small>REALITY RPG</small></div>
+    </div>
+
+    <div class="profile-mini">
+      <div class="mini-avatar"><canvas id="miniAvatar" width="32" height="32"></canvas></div>
+      <div><strong id="sideName">Aventureiro</strong><small id="sideLevel">Nível 1</small></div>
+    </div>
+
+    <nav class="navigation">
+      <button class="nav-btn active" data-page="home">⌂ <span>Início</span></button>
+      <button class="nav-btn" data-page="map">🗺 <span>Mapa 2D</span></button>
+      <button class="nav-btn" data-page="character">♙ <span>Personagem</span></button>
+      <button class="nav-btn" data-page="quests">☑ <span>Missões</span></button>
+      <button class="nav-btn" data-page="skills">✧ <span>Habilidades</span></button>
+      <button class="nav-btn" data-page="anime">◈ <span>Universos Anime</span></button>
+      <button class="nav-btn" data-page="inventory">▣ <span>Inventário</span></button>
+      <button class="nav-btn" data-page="achievements">♛ <span>Conquistas</span></button>
+      <button class="nav-btn" data-page="settings">⚙ <span>Configurações</span></button>
+    </nav>
+
+    <div class="sidebar-bottom"><span class="online-dot"></span> SISTEMA ONLINE</div>
+  </aside>
+
+  <main class="main-content">
+    <header class="topbar">
+      <div>
+        <small class="eyebrow">SUA JORNADA COMEÇA AGORA</small>
+        <h1 id="pageTitle">Painel do aventureiro</h1>
+      </div>
+      <div class="top-resources">
+        <div class="resource">🪙 <span id="topCoins">0</span></div>
+        <div class="resource">💎 <span id="topGems">0</span></div>
+      </div>
+    </header>
+
+    <!-- INÍCIO -->
+    <section class="page active" id="page-home">
+      <div class="welcome-banner">
+        <div>
+          <span class="tag">SISTEMA DE PROGRESSÃO</span>
+          <h2>Seu próximo nível<br>começa hoje.</h2>
+          <p>Complete missões na vida real e evolua no mundo dos animes.</p>
+          <button class="primary-btn" data-goto="quests">Ver missões →</button>
+        </div>
+        <div class="banner-symbol">✦</div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card"><span>⚡ EXPERIÊNCIA</span><strong id="homeXP">0 XP</strong><small>Experiência acumulada</small></div>
+        <div class="stat-card"><span>🏆 NÍVEL</span><strong id="homeLevel">1</strong><small>Seu nível atual</small></div>
+        <div class="stat-card"><span>☑ MISSÕES</span><strong id="homeCompleted">0</strong><small>Missões concluídas</small></div>
+        <div class="stat-card"><span>🔥 SEQUÊNCIA</span><strong id="homeStreak">0 dias</strong><small>Dias com atividades</small></div>
+      </div>
+
+      <div class="content-grid">
+        <div class="panel">
+          <div class="panel-heading">
+            <div><span class="eyebrow">PROGRESSÃO</span><h3>Experiência do personagem</h3></div>
+            <span class="level-label" id="levelLabel">NÍVEL 1</span>
+          </div>
+          <div class="xp-info"><span id="xpCurrent">0 XP</span><span id="xpNeeded">100 XP</span></div>
+          <div class="progress-track"><div class="progress-fill" id="xpBar"></div></div>
+          <p class="muted" id="xpMessage">Continue completando missões para evoluir.</p>
+        </div>
+
+        <div class="panel">
+          <div class="panel-heading">
+            <div><span class="eyebrow">AVENTUREIRO</span><h3>Seu personagem</h3></div>
+            <button class="text-btn" data-goto="character">Editar →</button>
+          </div>
+          <div class="preview-body">
+            <div class="avatar-stage">
+              <canvas id="homeAvatar" width="160" height="160"></canvas>
+            </div>
+            <div><h3 id="homeCharacterName">Aventureiro</h3><p class="muted">Guerreiro em treinamento</p><span class="tag">CLASSE INICIAL</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-heading"><div><span class="eyebrow">OBJETIVOS DE HOJE</span><h3>Missões diárias</h3></div><button class="text-btn" data-goto="quests">Ver todas →</button></div>
+        <div id="homeQuestList" class="quest-list"></div>
+      </div>
+
+      <div class="panel map-home-panel">
+        <div class="panel-heading"><div><span class="eyebrow">EXPLORAÇÃO</span><h3>Seu mundo</h3></div><button class="text-btn" data-goto="map">Explorar →</button></div>
+        <p class="muted">Local atual: <strong id="homeZone">Vila Inicial</strong></p>
+      </div>
+    </section>
+
+    <!-- MAPA -->
+    <section class="page" id="page-map">
+      <div class="section-intro">
+        <span class="eyebrow">MUNDO EXPLORÁVEL</span>
+        <h2>Mapa do aventureiro</h2>
+        <p>Explore o mundo, encontre personagens e descubra novos universos.</p>
+      </div>
+      <div class="panel map-panel">
+        <div class="panel-heading">
+          <div><span class="eyebrow">LOCALIZAÇÃO ATUAL</span><h3 id="zoneName">Vila Inicial</h3></div>
+          <span class="tag">MUNDO 2D</span>
+        </div>
+        <div class="map-frame"><canvas id="gameMap" width="960" height="576" tabindex="0"></canvas></div>
+        <div class="map-controls">
+          <div><strong>Movimentação</strong><p>WASD ou setas (segure para andar). No celular, toque no mapa.</p></div>
+          <div><strong>Interação</strong><p>Pressione E perto de NPCs e portais</p></div>
+          <div><strong>Objetivo</strong><p>Explore os três cenários disponíveis</p></div>
+        </div>
+        <div class="map-actions"><button class="secondary-btn" id="interactBtn">E • Interagir</button></div>
+        <div id="mapMessage" class="map-message">Explore o mapa para encontrar personagens.</div>
+      </div>
+    </section>
+
+    <!-- PERSONAGEM -->
+    <section class="page" id="page-character">
+      <div class="section-intro"><span class="eyebrow">PERSONALIZAÇÃO</span><h2>Crie seu personagem</h2><p>Escolha a aparência do seu aventureiro. Clique no personagem para girar e veja a animação de caminhada.</p></div>
+      <div class="customization-layout">
+        <div class="panel character-display">
+          <div class="avatar-stage large-stage">
+            <canvas id="customAvatar" width="320" height="320" title="Clique para girar"></canvas>
+          </div>
+          <div class="preview-actions">
+            <button class="secondary-btn" id="turnBtn">↻ Girar</button>
+            <button class="secondary-btn" id="walkBtn">⏸ Parar</button>
+          </div>
+          <h2 id="previewName">Aventureiro</h2><span class="tag">AVENTUREIRO</span>
+        </div>
+        <div class="panel">
+          <h3>Personalização visual</h3>
+          <label class="field-label" for="characterName">Nome do personagem</label>
+          <input id="characterName" maxlength="20" placeholder="Digite seu nome">
+          <label class="field-label" for="hairStyle">Estilo de cabelo</label>
+          <select id="hairStyle"><option value="spiky">Espetado</option><option value="short">Curto</option><option value="long">Longo</option><option value="messy">Desarrumado</option></select>
+          <label class="field-label" for="hairColor">Cor do cabelo</label><input type="color" id="hairColor" value="#29213e">
+          <label class="field-label" for="skinColor">Cor da pele</label><input type="color" id="skinColor" value="#e9b995">
+          <label class="field-label" for="eyeColor">Cor dos olhos</label><input type="color" id="eyeColor" value="#55c8ff">
+          <label class="field-label" for="outfitColor">Cor da roupa</label><input type="color" id="outfitColor" value="#7047dc">
+          <button class="primary-btn full-btn" id="saveCharacter">Salvar personagem</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- MISSÕES -->
+    <section class="page" id="page-quests">
+      <div class="section-intro"><span class="eyebrow">CENTRAL DE MISSÕES</span><h2>Missões do aventureiro</h2><p>Complete tarefas reais para ganhar experiência e recompensas.</p></div>
+      <div class="quest-summary">
+        <div><strong id="questDone">0</strong><small>Concluídas</small></div>
+        <div><strong id="questRemaining">0</strong><small>Pendentes</small></div>
+        <div><strong id="questTotal">0</strong><small>Total de hoje</small></div>
+      </div>
+      <div class="panel"><div class="panel-heading"><h3>Missões diárias</h3><span class="tag">RENOVAÇÃO DIÁRIA</span></div><div id="questList" class="quest-list"></div></div>
+      <div class="panel">
+        <h3>Criar missão personalizada</h3>
+        <div class="custom-quest-form">
+          <input id="newQuestName" maxlength="60" placeholder="Ex: Estudar matemática por 30 minutos">
+          <select id="newQuestDifficulty"><option value="easy">Fácil — 20 XP</option><option value="medium">Média — 40 XP</option><option value="hard">Difícil — 70 XP</option></select>
+          <button class="primary-btn" id="addQuest">Adicionar missão +</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- HABILIDADES -->
+    <section class="page" id="page-skills">
+      <div class="section-intro"><span class="eyebrow">ÁRVORE DE HABILIDADES</span><h2>Habilidades de anime</h2><p>Desbloqueie habilidades usando moedas e níveis. Equipe suas favoritas.</p></div>
+      <div class="panel"><h3>Habilidades equipadas</h3><div id="equippedSkills" class="equipped-grid"></div></div>
+      <div id="skillsList" class="skills-grid"></div>
+    </section>
+
+    <!-- ANIMES -->
+    <section class="page" id="page-anime">
+      <div class="section-intro"><span class="eyebrow">MULTIVERSO</span><h2>Universos de anime</h2><p>Conheça os universos que fazem parte do seu RPG.</p></div>
+      <div id="animeList" class="anime-grid"></div>
+    </section>
+
+    <!-- INVENTÁRIO -->
+    <section class="page" id="page-inventory">
+      <div class="section-intro"><span class="eyebrow">ITENS COLETADOS</span><h2>Inventário</h2><p>Veja suas recompensas e itens conquistados.</p></div>
+      <div id="inventoryList" class="inventory-grid"></div>
+    </section>
+
+    <!-- CONQUISTAS -->
+    <section class="page" id="page-achievements">
+      <div class="section-intro"><span class="eyebrow">MARCOS DA JORNADA</span><h2>Conquistas</h2><p>Registre seus avanços ao longo da jornada.</p></div>
+      <div id="achievementsList" class="achievement-list"></div>
+    </section>
+
+    <!-- CONFIGURAÇÕES -->
+    <section class="page" id="page-settings">
+      <div class="section-intro"><span class="eyebrow">SISTEMA</span><h2>Configurações</h2><p>Gerencie seus dados e seu progresso.</p></div>
+      <div class="panel settings-panel">
+        <h3>Salvar progresso</h3><p class="muted">Seu progresso é salvo automaticamente neste navegador.</p>
+        <button class="secondary-btn" id="exportSave">Exportar salvamento</button>
+        <label class="secondary-btn import-label">Importar salvamento<input type="file" id="importSave" accept=".json,application/json"></label>
+      </div>
+      <div class="panel danger-panel"><h3>Reiniciar jogo</h3><p class="muted">Isso apagará seu progresso salvo neste navegador.</p><button class="danger-btn" id="resetGame">Reiniciar progresso</button></div>
+    </section>
+
+    <footer>ANIME LIFE RPG <span>•</span> SUA EVOLUÇÃO COMEÇA NA VIDA REAL</footer>
+  </main>
+</div>
+
+<div id="toast" class="toast"></div>
+<script src="script.js"></script>
+</body>
+</html>

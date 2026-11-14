@@ -1,0 +1,202 @@
+:root {
+  --bg: #0b0914;
+  --panel: #151222;
+  --panel-light: #1c1830;
+  --purple: #9565ff;
+  --purple-light: #b99aff;
+  --cyan: #54d9f5;
+  --text: #f4f0ff;
+  --muted: #9991b1;
+  --border: #302746;
+  --green: #63e6a4;
+  --red: #ff647d;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: "Rajdhani", sans-serif; font-size: 17px; }
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+.app { display: flex; min-height: 100vh; }
+
+/* MENU */
+.sidebar {
+  width: 245px; min-height: 100vh; background: #100d1d;
+  border-right: 1px solid var(--border); padding: 25px 17px;
+  display: flex; flex-direction: column; position: fixed;
+  inset: 0 auto 0 0; z-index: 10;
+}
+.logo { display: flex; align-items: center; gap: 12px; margin-bottom: 35px; font-family: Orbitron, sans-serif; }
+.logo-icon { color: var(--purple-light); font-size: 35px; }
+.logo strong, .logo small { display: block; }
+.logo strong { font-size: 15px; letter-spacing: 1px; }
+.logo small { color: var(--muted); font-size: 10px; letter-spacing: 3px; }
+.profile-mini { display: flex; align-items: center; gap: 12px; padding: 13px; background: var(--panel); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 27px; }
+.profile-mini strong, .profile-mini small { display: block; }
+.profile-mini small { color: var(--purple-light); }
+.mini-avatar { width: 40px; height: 40px; background: linear-gradient(135deg, var(--purple), #432b80); border-radius: 10px; display: grid; place-items: center; overflow: hidden; }
+.mini-avatar canvas { width: 32px; height: 32px; image-rendering: pixelated; display: block; }
+.navigation { display: grid; gap: 7px; }
+.nav-btn { text-align: left; background: transparent; border: 0; color: var(--muted); padding: 13px; border-radius: 9px; font-size: 19px; transition: .2s; }
+.nav-btn span { margin-left: 10px; font-size: 17px; }
+.nav-btn:hover, .nav-btn.active { background: #261b42; color: white; }
+.nav-btn.active { box-shadow: inset 3px 0 var(--purple); }
+.sidebar-bottom { margin-top: auto; color: var(--muted); font-size: 12px; letter-spacing: 2px; }
+.online-dot { display: inline-block; background: var(--green); width: 8px; height: 8px; border-radius: 50%; margin-right: 7px; }
+
+/* CONTEÚDO */
+.main-content { width: calc(100% - 245px); margin-left: 245px; padding: 30px 38px; max-width: 1600px; }
+.topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 30px; }
+.topbar h1 { font-size: 30px; font-family: Orbitron, sans-serif; }
+.eyebrow { color: var(--purple-light); font-family: Orbitron, sans-serif; font-size: 10px; letter-spacing: 2px; }
+.top-resources { display: flex; gap: 10px; }
+.resource { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 10px 15px; font-weight: 700; }
+.page { display: none; animation: appear .25s ease; }
+.page.active { display: block; }
+@keyframes appear { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: translateY(0); } }
+
+.welcome-banner {
+  min-height: 245px; padding: 35px;
+  background: radial-gradient(circle at 85% 40%, #7047dc55, transparent 30%), linear-gradient(110deg, #24163e, #171326);
+  border: 1px solid #473268; border-radius: 17px;
+  display: flex; justify-content: space-between; align-items: center;
+  overflow: hidden; margin-bottom: 22px;
+}
+.welcome-banner h2 { font: 700 34px Orbitron, sans-serif; margin: 12px 0; }
+.welcome-banner p, .section-intro p { color: var(--muted); max-width: 500px; margin-bottom: 20px; }
+.banner-symbol { font-size: 140px; color: #b99aff55; text-shadow: 0 0 60px #9565ff; padding: 20px 50px; }
+.tag { color: var(--cyan); font-size: 11px; letter-spacing: 2px; font-weight: 700; }
+.primary-btn, .secondary-btn, .danger-btn { border: 0; border-radius: 8px; padding: 11px 18px; font-weight: 700; transition: .2s; display: inline-block; text-align: center; }
+.primary-btn { background: linear-gradient(100deg, #8152e8, #a36eff); color: white; }
+.primary-btn:hover { filter: brightness(1.2); transform: translateY(-2px); }
+.secondary-btn { background: #2c2440; border: 1px solid var(--border); color: white; }
+.secondary-btn:hover { background: #382d52; }
+.danger-btn { background: #64263b; color: white; }
+.text-btn { background: transparent; color: var(--purple-light); border: 0; font-weight: 700; }
+.full-btn { width: 100%; margin-top: 25px; }
+
+/* PAINÉIS */
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 20px; }
+.stat-card, .panel { background: var(--panel); border: 1px solid var(--border); border-radius: 13px; padding: 20px; }
+.stat-card span { display: block; color: var(--muted); font-size: 12px; letter-spacing: 1px; }
+.stat-card strong { display: block; font: 700 27px Orbitron, sans-serif; margin: 13px 0 5px; }
+.stat-card small, .muted { color: var(--muted); }
+.content-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 18px; margin-bottom: 20px; }
+.panel { margin-bottom: 20px; }
+.panel h3, .panel-heading h3 { font-size: 21px; }
+.panel-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 20px; }
+.panel-heading .eyebrow { display: block; margin-bottom: 5px; }
+.level-label { color: var(--purple-light); font-family: Orbitron, sans-serif; font-size: 12px; }
+.xp-info { display: flex; justify-content: space-between; margin: 18px 0 8px; color: var(--muted); }
+.progress-track { height: 12px; background: #302744; border-radius: 20px; overflow: hidden; }
+.progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, var(--purple), var(--cyan)); border-radius: inherit; transition: width .4s; }
+#xpMessage { margin-top: 12px; }
+.preview-body { display: flex; align-items: center; gap: 20px; }
+
+/* PERSONAGEM (SPRITES EM CANVAS) */
+.avatar-stage { height: 155px; width: 155px; background: radial-gradient(circle, #46316b, #1b1630 70%); border: 1px solid #57417d; border-radius: 14px; display: grid; place-items: center; overflow: hidden; }
+.avatar-stage canvas { width: 100%; height: 100%; image-rendering: pixelated; display: block; }
+.large-stage { width: 100%; height: 320px; }
+.large-stage canvas { width: auto; height: 100%; max-width: 100%; aspect-ratio: 1 / 1; cursor: pointer; }
+.preview-actions { display: flex; justify-content: center; gap: 10px; margin-top: 14px; }
+
+/* PERSONALIZAÇÃO */
+.section-intro { margin-bottom: 25px; }
+.section-intro h2 { font: 700 28px Orbitron, sans-serif; margin: 10px 0; }
+.customization-layout { display: grid; grid-template-columns: .9fr 1.1fr; gap: 20px; }
+.character-display { text-align: center; }
+.character-display h2 { margin: 20px 0 5px; }
+.field-label { display: block; margin: 17px 0 7px; color: var(--purple-light); font-weight: 700; }
+input:not([type="color"]):not([type="file"]), select { width: 100%; padding: 11px 12px; border-radius: 8px; background: #0e0b19; border: 1px solid var(--border); color: white; outline: none; }
+input:focus, select:focus { border-color: var(--purple); }
+input[type="color"] { width: 100%; height: 42px; padding: 4px; background: #0e0b19; border: 1px solid var(--border); border-radius: 8px; }
+.custom-quest-form { display: grid; grid-template-columns: 1.5fr 1fr auto; gap: 10px; margin-top: 18px; }
+
+/* MISSÕES */
+.quest-summary { display: flex; gap: 12px; margin-bottom: 20px; }
+.quest-summary div { flex: 1; padding: 16px; background: var(--panel); border: 1px solid var(--border); border-radius: 10px; }
+.quest-summary strong, .quest-summary small { display: block; }
+.quest-summary strong { font: 700 24px Orbitron, sans-serif; }
+.quest-summary small { color: var(--muted); }
+.quest-list { display: grid; gap: 10px; }
+.quest-item { display: flex; justify-content: space-between; align-items: center; gap: 15px; padding: 14px; background: #1c1830; border: 1px solid var(--border); border-radius: 9px; }
+.quest-item > div:first-child { flex: 1; min-width: 0; }
+.quest-item.done { opacity: .6; border-color: #3e795f; }
+.quest-item.done .quest-name { text-decoration: line-through; }
+.quest-name { font-weight: 700; font-size: 18px; }
+.quest-meta { color: var(--muted); font-size: 14px; }
+.quest-reward { color: var(--cyan); white-space: nowrap; font-weight: 700; }
+.complete-btn { border: 1px solid #5c438c; background: #33234f; color: white; border-radius: 7px; padding: 8px 12px; white-space: nowrap; }
+.complete-btn:disabled { background: #203d32; border-color: #386a55; color: var(--green); cursor: default; }
+.delete-btn { border: 1px solid #633047; background: #3a1a29; color: white; border-radius: 7px; padding: 8px 10px; line-height: 1; }
+.delete-btn:hover { background: #64263b; }
+
+/* HABILIDADES E COLEÇÕES */
+.equipped-grid, .skills-grid, .anime-grid, .inventory-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; }
+.equipped-slot, .skill-card, .anime-card, .inventory-item { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
+.equipped-slot { min-height: 90px; display: grid; place-items: center; color: var(--muted); text-align: center; }
+.skill-card h3, .anime-card h3 { margin: 8px 0; }
+.skill-card p, .anime-card p { color: var(--muted); margin-bottom: 14px; }
+.skill-icon, .anime-icon { font-size: 31px; }
+.skill-card button { width: 100%; padding: 9px; background: #33234f; color: white; border: 1px solid #57417d; border-radius: 7px; }
+.skill-card button:disabled { opacity: .5; cursor: not-allowed; }
+.skill-card.locked { opacity: .75; }
+.skill-card.equipped { border-color: var(--cyan); }
+.skill-cost { color: var(--cyan); margin-bottom: 10px; display: block; }
+.achievement-list { display: grid; gap: 12px; }
+.achievement { display: flex; gap: 15px; align-items: center; padding: 16px; border: 1px solid var(--border); background: var(--panel); border-radius: 10px; }
+.achievement-icon { font-size: 28px; }
+.achievement p, .inventory-item p { color: var(--muted); }
+.achievement.locked { opacity: .45; }
+.inventory-item { text-align: center; }
+.inventory-item strong { display: block; margin: 10px 0; }
+.inventory-icon { font-size: 35px; }
+.settings-panel, .danger-panel { max-width: 650px; }
+.settings-panel button, .danger-panel button { margin-top: 15px; margin-right: 8px; }
+.import-label { cursor: pointer; }
+.import-label input { display: none; }
+.danger-panel { border-color: #633047; }
+
+/* MAPA 2D */
+.map-panel { overflow: hidden; }
+.map-frame { width: 100%; background: #101a20; border: 2px solid #55417c; border-radius: 12px; overflow: hidden; line-height: 0; }
+#gameMap { width: 100%; height: auto; display: block; image-rendering: pixelated; outline: none; touch-action: none; }
+.map-controls { display: flex; justify-content: space-between; gap: 15px; margin-top: 18px; flex-wrap: wrap; }
+.map-controls p { color: var(--muted); }
+.map-actions { margin-top: 14px; display: flex; gap: 10px; flex-wrap: wrap; }
+.map-message { margin-top: 15px; padding: 13px; background: #241b38; border: 1px solid #493568; border-radius: 8px; color: var(--purple-light); min-height: 48px; }
+.map-home-panel { margin-top: 5px; }
+
+footer { color: #69617e; font-size: 11px; letter-spacing: 2px; text-align: center; margin: 40px 0 10px; }
+footer span { color: var(--purple); }
+.toast { position: fixed; bottom: 25px; right: 25px; padding: 14px 20px; background: #292044; border: 1px solid var(--purple); border-radius: 10px; color: white; opacity: 0; transform: translateY(15px); pointer-events: none; transition: .25s; z-index: 100; }
+.toast.show { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 1050px) {
+  .sidebar { width: 205px; }
+  .main-content { width: calc(100% - 205px); margin-left: 205px; padding: 25px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .skills-grid, .anime-grid, .inventory-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 700px) {
+  .app { display: block; }
+  .sidebar { position: static; width: 100%; min-height: auto; padding: 14px; }
+  .logo { margin-bottom: 12px; }
+  .profile-mini, .sidebar-bottom { display: none; }
+  .navigation { display: flex; overflow-x: auto; gap: 5px; }
+  .nav-btn { white-space: nowrap; padding: 9px; font-size: 16px; }
+  .nav-btn span { font-size: 14px; margin-left: 3px; }
+  .main-content { margin: 0; width: 100%; padding: 20px 13px; }
+  .topbar h1 { font-size: 20px; }
+  .welcome-banner { padding: 22px; }
+  .welcome-banner h2 { font-size: 25px; }
+  .banner-symbol { font-size: 65px; padding: 0; }
+  .content-grid, .customization-layout { grid-template-columns: 1fr; }
+  .custom-quest-form { grid-template-columns: 1fr; }
+  .equipped-grid, .skills-grid, .anime-grid, .inventory-grid { grid-template-columns: 1fr; }
+  .quest-item { align-items: flex-start; flex-wrap: wrap; }
+  .quest-summary { gap: 6px; }
+  .quest-summary div { padding: 10px; }
+  .quest-summary strong { font-size: 18px; }
+  .map-controls { display: grid; }
+  .large-stage { height: 260px; }
+}
